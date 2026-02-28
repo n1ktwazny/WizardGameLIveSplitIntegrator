@@ -1,3 +1,8 @@
 is_global = true
 build_property.RootNamespace = BlenderGuardRebalance
-build_property.ProjectDir = C:\Users\Laptop\OneDrive\Dokumenty\GitHub\BlenderGuardRebalance\WizardGameLIveSplitIntegrator\WizardGameLIveSplitIntegrator\
+build_property.ProjectDir = C:\Users\Admin\Documents\Github\WizardGameLIveSplitIntegrator\WizardGameLIveSplitIntegrator\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

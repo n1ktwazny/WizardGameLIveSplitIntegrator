@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardGameLIveSplitIntegrator", "WizardGameLIveSplitIntegrator\WizardGameLIveSplitIntegrator.csproj", "{04DB2740-0E46-E0B6-930D-FF5774F7E9A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04DB2740-0E46-E0B6-930D-FF5774F7E9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DB2740-0E46-E0B6-930D-FF5774F7E9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DB2740-0E46-E0B6-930D-FF5774F7E9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DB2740-0E46-E0B6-930D-FF5774F7E9A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DB1156D-9C4B-41DA-BF90-C0921CCFC8DC}
+	EndGlobalSection
+EndGlobal
