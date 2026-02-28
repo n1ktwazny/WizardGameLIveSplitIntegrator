@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WizardGameLIveSplitIntegrator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8a55a8a522e3c1474f40f4e57500292fa9d46d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3c175fb890f66e213232be4ad37177baa85490d")]
 [assembly: System.Reflection.AssemblyProductAttribute("WizardGameLIveSplitIntegrator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WizardGameLIveSplitIntegrator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
