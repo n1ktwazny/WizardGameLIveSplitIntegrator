@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using UnityEngine;
 using System.IO.MemoryMappedFiles;
@@ -7,6 +8,9 @@ using System.Runtime.InteropServices;
 
 [BepInPlugin("com.nikt.wizardgamespeedrunintegrator", "Wizard Game Livesplit Integration Tool", "0.1.0")]
 public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
+    private static ConfigEntry<bool> TASWaves;
+    private static ConfigEntry<bool> TASSubWaves;
+    private static ConfigEntry<bool> PReset;
     private static float inGameTimer;
     private static float realLifeTime;
 
@@ -25,6 +29,10 @@ public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
     void Awake(){
         Harmony.CreateAndPatchAll(typeof(WizardGameSpeedrunIntegrator));
 
+        PReset = Config.Bind("Options", "Reset on P", true, "Resets when pressing the letter P on thy keyboard");
+        TASWaves = Config.Bind("TAS", "Wave RNG Manipulation", false, "Forces 3 waves until bigboy");
+        TASSubWaves = Config.Bind("TAS", "Sub-wave RNG Manipulation", false, "Forces minimum amount of enemies in subwave");
+
         mmf = MemoryMappedFile.CreateOrOpen("WizardGameSpeedrun", Marshal.SizeOf<SpeedrunState>());
         accessor = mmf.CreateViewAccessor();
         ResetNumbers();
@@ -32,7 +40,8 @@ public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
 
     void Update(){
         accessor.Write(0, ref state);
-        if (Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.P)){
+        if (Input.GetKeyDown(KeyCode.R)||(Input.GetKeyDown(KeyCode.P)&& PReset.Value)){
+
             ResetNumbers();
             ResetScene.Invoke(SceneManager.Instance, null);
         }
@@ -93,6 +102,7 @@ public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
         if (state.hubOpened == 1){
             Debug.Log("#- Hub ReEntered detected");
             state.gameFinished = 1;
+            state.isRunStarted = 0;
         }
     }
     
@@ -167,6 +177,29 @@ public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
         }
 
         currentWave++;
+    }
+
+    //TAS RNG manipulation
+    
+    [HarmonyPatch(typeof(WaveManager), "Start")]
+    [HarmonyPostfix]
+    static void TASWaveOverride(WaveManager __instance){
+        if(TASWaves.Value){
+            AccessTools.Field(typeof(WaveManager), "_maxSubWaves").SetValue(__instance, 
+            AccessTools.Field(typeof(WaveManager), "_minSubWaves").GetValue(__instance));
+        }
+    }
+
+    [HarmonyPatch(typeof(WaveManager), "Start")]
+    [HarmonyPostfix]
+    static void TASSubWaveOverride(WaveManager __instance){
+        if(TASSubWaves.Value){
+            AccessTools.Field(typeof(WaveManager), "_maxEnemyQuota").SetValue(__instance, 
+            AccessTools.Field(typeof(WaveManager), "_minEnemyQuota").GetValue(__instance));
+
+            AccessTools.Field(typeof(WaveManager), "_timeToSpawnMax").SetValue(__instance, 
+            AccessTools.Field(typeof(WaveManager), "_timeToSpawnMin").GetValue(__instance));
+        }
     }
 }
 
