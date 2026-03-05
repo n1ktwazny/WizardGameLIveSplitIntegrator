@@ -85,7 +85,7 @@ public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
         if(_playerMovement == null){
             _playerMovement = __instance;
         }
-        if (state.isRunStarted != 1){
+        if (state.isRunStarted != 1 && state.gameFinished != 1){
             Debug.Log($"#- Test, {CheckMove?.Invoke(__instance, null)}");
             if ((bool)CheckMove.Invoke(__instance, null)){
                 state.isRunStarted = 1;
