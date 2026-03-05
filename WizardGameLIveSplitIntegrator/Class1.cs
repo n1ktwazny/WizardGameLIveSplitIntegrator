@@ -6,7 +6,7 @@ using UnityEngine;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 
-[BepInPlugin("com.nikt.wizardgamespeedrunintegrator", "Wizard Game Livesplit Integration Tool", "0.1.0")]
+[BepInPlugin("com.nikt.wizardgamespeedrunintegrator", "Wizard Game Livesplit Integration Tool", "0.2.1")]
 public class WizardGameSpeedrunIntegrator : BaseUnityPlugin{
     private static ConfigEntry<bool> TASWaves;
     private static ConfigEntry<bool> TASSubWaves;
